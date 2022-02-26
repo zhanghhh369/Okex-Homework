@@ -9,7 +9,7 @@ contract("Counter", function(accounts){
         }).then(function(){
             return counterInstance.Counter();
         }).then(function(count){
-            if(count1==1){
+            if(count==1){
                 print(1);
             }
             else
