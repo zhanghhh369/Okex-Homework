@@ -5,3 +5,6 @@ OK培训作业week1：
 
 2.G网部署truffle合约
 0x5636d75d740c682d6b03c718b7ce98afa760be6009a322957c80337683bee8a4
+
+3.G网部署hardhat新counter合约
+0xB8A37ED912E06245d8d5ddFF9B8181026748332d
