@@ -7,11 +7,9 @@ contract Teacher {
         Score score = new Score(msg.sender);
         scoreAddress = address(score);
     }
-
     function getGrade(address studentAddr) external view returns (uint) {
         return IScore(scoreAddress).getGrade(studentAddr);
     }
-
     function setGrade(address studentAddr, uint grade) external {
         IScore(scoreAddress).setGrade(studentAddr, grade);
     }
