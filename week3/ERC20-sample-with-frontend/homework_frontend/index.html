@@ -117,11 +117,16 @@ body {
         return false;
       }
       var myContract = new web3.eth.Contract(abi, contractAddr, {
-        from: '0xd7306405aF1A2e0b317d16B9D36b014cD8392B24', // 默认交易发送地址
+        from: '0xd7306405aF1A2e0b317d16B9D36b014cD8392B24', 
         gasPrice: '2100000000' // 以 wei 为单位的默认 gas 价格，当前价格为 20 gwei
       });
-      myContract
-			myContract.methods.deposit(inAmount).send({from:'0xd7306405aF1A2e0b317d16B9D36b014cD8392B24'}).then();
+      var token = new web3.eth.Contract(tokenAbi, tokenAddr, {
+        from: '0xd7306405aF1A2e0b317d16B9D36b014cD8392B24', 
+        gasPrice: '2100000000' // 以 wei 为单位的默认 gas 价格，当前价格为 20 gwei
+      });
+      token.methods.approve(contractAddr,inAmount).send({from: '0xd7306405aF1A2e0b317d16B9D36b014cD8392B24'}).then(function next(){
+          myContract.methods.deposit(inAmount).send({from:'0xd7306405aF1A2e0b317d16B9D36b014cD8392B24'}).then();
+      });
 		}
 
     function withdraw() {

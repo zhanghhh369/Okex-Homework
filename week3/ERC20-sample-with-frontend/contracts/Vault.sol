@@ -24,13 +24,14 @@ contract Vault {
     }
 
     function deposit(uint amount) public {
-        require(IERC20(token).transferFrom(msg.sender, address(this), amount), "Transfer from error");
-        balances[msg.sender] += amount;
+        require(IERC20(token).transferFrom(msg.sender, address(this), _amountWithDecimal), "Transfer from error");
+        balances[msg.sender] += _amountWithDecimal;
     }
 
     function withdraw(uint amount) public {
+        uint256 _amountWithDecimal = amount * 10 ** 18;
         require(IERC20(token).transferFrom(address(this), msg.sender, amount), "Transfer from error");
-        balances[msg.sender] -= amount;
+        balances[msg.sender] -= _amountWithDecimal;
     }
 
     function queryBalance() external view returns (uint256) {
@@ -43,6 +44,6 @@ contract XiaoZilla is ERC20 {
 
     mapping(address => bool) public WhiteList;
     constructor() ERC20("XiaoZilla", "XiaoZilla") {
-        _mint(msg.sender, 100 * 10 ** 18);
+        _mint(msg.sender, 10000 * 10 ** 18);
     }
 }
