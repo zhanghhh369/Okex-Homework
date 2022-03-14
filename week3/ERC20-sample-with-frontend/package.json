@@ -1,0 +1,13 @@
+{
+  "name": "hardhat-project",
+  "dependencies": {
+    "@openzeppelin/contracts": "^4.5.0",
+    "ejs": "^3.1.6",
+    "ethereumjs-tx": "^2.1.2",
+    "express": "^4.17.3",
+    "save": "^2.4.0",
+    "save-dev": "^0.0.1-security",
+    "text": "github:requirejs/text",
+    "web3": "^1.7.1"
+  }
+}
