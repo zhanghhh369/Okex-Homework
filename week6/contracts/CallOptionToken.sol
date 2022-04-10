@@ -23,11 +23,9 @@ contract CallOptionToken is ERC20, Ownable {
     }
 
     function exercise(uint256 amount) external {//行权函数
-        require(
-            block.timestamp >= exerciseTime &&
-            block.timestamp < exerciseTime + during,
-            "invalid time"
-        );//如果过期或不到期，都无法行权
+        //如果过期或不到期，都无法行权
+        require(block.timestamp < exerciseTime + during, "INVALID_TIME: TOO EARLY");
+        require(block.timestamp >= exerciseTime, "INVALID_TIME: TOO LATE");
 
         _burn(msg.sender, amount);
         uint256 totalPrice = price * amount;
@@ -48,7 +46,7 @@ contract CallOptionToken is ERC20, Ownable {
     }
 
     function burnAll() external onlyOwner {//到期销毁
-        require(block.timestamp >= exerciseTime + during, "not end");
+        require(block.timestamp >= exerciseTime + during, "INVALID_TIME: TOO EARLY");
         uint256 usdtAmount = IERC20(USDT).balanceOf(address(this));
         IERC20(USDT).safeTransfer(msg.sender, usdtAmount);
 
